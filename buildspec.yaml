@@ -1,0 +1,18 @@
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+  pre_build:
+    commands:
+      - echo Installing NPM dependencies
+      - npm i
+  build:
+    commands:
+      - echo Build on `date`
+      - npm run build
+      - echo Upload source artifacts into deployment bucket
+      - aws s3 sync ./build/ s3:/${DEPLOY_BUCKET_NAME}
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build

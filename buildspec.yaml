@@ -13,7 +13,7 @@ phases:
       - echo Build on `date`
       - npm run build
       - echo Upload source artifacts into deployment bucket
-      - aws s3 sync ./build/ s3:/${DEPLOY_BUCKET_NAME}
+      - aws s3 sync ./build/ s3://${DEPLOY_BUCKET_NAME}
 artifacts:
   files:
     - '**/*'
